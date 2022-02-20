@@ -1,5 +1,5 @@
 import './sass/main.scss';
-import { fetchImage } from './js-module/get-data';
+import { ImgApiService } from './js-module/get-data';
 import markupTamplate from './hbs-template/render-markup-gallery.hbs';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
@@ -7,22 +7,27 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const buttonSearch = document.querySelector('#search-form');
 const galleryContainer = document.querySelector('.gallery');
+const loadMoreButton = document.querySelector('.load-more');
 
-const onSearchImg = event => {
+const imgApiService = new ImgApiService();
+
+const onGetImg = event => {
   event.preventDefault();
-  const {
-    elements: { searchQuery },
-  } = event.currentTarget;
 
-  console.log(searchQuery.value);
+  imgApiService.query = event.currentTarget.searchQuery.value;
+  imgApiService.resetPage();
+  onFetchImg();
+};
 
-  fetchImage(searchQuery.value)
-    .then(({ hits }) => {
+const onFetchImg = () => {
+  imgApiService
+    .fetchImage()
+    .then(hits => {
       console.log(hits);
       if (hits.length === 0) {
-        return Promise.reject();
+        Notify.warning('Sorry, there are no images matching your search query. Please try again.');
       }
-      return onRenderMarkupGallery(hits);
+      onRenderMarkupGallery(hits);
     })
     .catch(onShowError);
 };
@@ -45,7 +50,7 @@ const onSimpleLightbox = () => {
 };
 
 const onShowError = () => {
-  Notify.warning('Sorry, there are no images matching your search query. Please try again.');
+  Notify.failure('Error. Please try again.');
 };
 
-buttonSearch.addEventListener('submit', onSearchImg);
+buttonSearch.addEventListener('submit', onGetImg);
