@@ -1,4 +1,38 @@
+// .gallery {
+//   display: grid;
+//   grid-template-columns: repeat(4, 1fr);
+//   grid-column-gap: 10px;
+//   grid-row-gap: 1em;
+// }
 .gallery {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  // max-width: 1140px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  // grid-auto-rows: 240px;
+  grid-gap: 12px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.photo-card {
+  border: 1px solid black;
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+}
+
+b {
+  margin-bottom: 5px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-right: 20px;
+  margin-bottom: 10px;
 }
