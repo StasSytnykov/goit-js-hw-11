@@ -3,6 +3,7 @@ import { fetchImage } from './js-module/get-data';
 import markupTamplate from './hbs-template/render-markup-gallery.hbs';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const buttonSearch = document.querySelector('#search-form');
 const galleryContainer = document.querySelector('.gallery');
@@ -44,7 +45,7 @@ const onSimpleLightbox = () => {
 };
 
 const onShowError = () => {
-  alert('Sorry, there are no images matching your search query. Please try again.');
+  Notify.warning('Sorry, there are no images matching your search query. Please try again.');
 };
 
 buttonSearch.addEventListener('submit', onSearchImg);
