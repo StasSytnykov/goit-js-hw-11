@@ -1,1 +1,0 @@
-{"version":3,"sources":["sass/_search-image-style.scss"],"names":[],"mappings":"AAAA,aACE,YAAA,CACA,sBAAA,CACA,qBAAA,CAEA,gBAAA,CACA","file":"src.26283cd6.css","sourceRoot":"../src","sourcesContent":[".search-form {\n  display: flex;\n  justify-content: center;\n  background-color: pink;\n\n  padding-top: 10px;\n  padding-bottom: 10px;\n}\n"]}
