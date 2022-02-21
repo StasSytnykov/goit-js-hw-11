@@ -27,11 +27,14 @@ const onSearchImg = () => {
     .then(data => {
       if (data.hits.length === 0) {
         Notify.warning('Sorry, there are no images matching your search query. Please try again.');
+        return;
       }
-      onRenderMarkupGallery(data.hits);
-      console.log(data.hits);
-      // console.log(totalHits);
-      loadMoreButton.classList.remove('is-hidden');
+      if (data.hits.length !== 0) {
+        onRenderMarkupGallery(data.hits);
+        console.log(data.hits);
+        console.log(data.totalHits);
+        loadMoreButton.classList.remove('is-hidden');
+      }
     })
     .catch(onShowError);
 };
