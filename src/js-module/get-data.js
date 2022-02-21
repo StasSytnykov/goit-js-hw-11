@@ -19,9 +19,9 @@ class ImgApiService {
         }
         return response.json();
       })
-      .then(({ hits }) => {
+      .then(({ hits, totalHits }) => {
         this.incrementPage();
-        return hits;
+        return { hits, totalHits };
       });
   }
 
