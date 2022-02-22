@@ -1,14 +1,6 @@
-// .gallery {
-//   display: grid;
-//   grid-template-columns: repeat(4, 1fr);
-//   grid-column-gap: 10px;
-//   grid-row-gap: 1em;
-// }
 .gallery {
   display: grid;
-  // max-width: 1140px;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  // grid-auto-rows: 240px;
   grid-gap: 12px;
   justify-content: center;
   padding-top: 60px;
