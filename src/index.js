@@ -29,8 +29,15 @@ const onSearchImg = () => {
         Notify.warning('Sorry, there are no images matching your search query. Please try again.');
         return;
       }
+      if (data.hits.length < 40) {
+        loadMoreButton.classList.add('is-hidden');
+        Notify.warning("We're sorry, but you've reached the end of search results.");
+        onRenderMarkupGallery(data.hits);
+        return;
+      }
       if (data.hits.length !== 0) {
         onRenderMarkupGallery(data.hits);
+        console.log(data);
         console.log(data.hits);
         console.log(data.totalHits);
         loadMoreButton.classList.remove('is-hidden');
