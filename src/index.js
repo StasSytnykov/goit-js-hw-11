@@ -36,8 +36,6 @@ const onSearchImg = async () => {
     }
     if (image.hits.length !== 0) {
       onRenderMarkupGallery(image.hits);
-      console.log(image.hits);
-      console.log(image.totalHits);
       loadMoreButton.classList.remove('is-hidden');
     }
   } catch (error) {
