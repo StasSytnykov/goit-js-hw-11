@@ -19,31 +19,30 @@ const onGetImg = event => {
   onSearchImg();
 };
 
-const onSearchImg = () => {
+const onSearchImg = async () => {
   loadMoreButton.classList.add('is-hidden');
 
-  imgApiService
-    .fetchImage()
-    .then(data => {
-      if (data.hits.length === 0) {
-        Notify.warning('Sorry, there are no images matching your search query. Please try again.');
-        return;
-      }
-      if (data.hits.length < 40) {
-        loadMoreButton.classList.add('is-hidden');
-        Notify.warning("We're sorry, but you've reached the end of search results.");
-        onRenderMarkupGallery(data.hits);
-        return;
-      }
-      if (data.hits.length !== 0) {
-        onRenderMarkupGallery(data.hits);
-        console.log(data);
-        console.log(data.hits);
-        console.log(data.totalHits);
-        loadMoreButton.classList.remove('is-hidden');
-      }
-    })
-    .catch(onShowError);
+  try {
+    const image = await imgApiService.fetchImage();
+    if (image.hits.length === 0) {
+      Notify.warning('Sorry, there are no images matching your search query. Please try again.');
+      return;
+    }
+    if (image.hits.length < 40) {
+      loadMoreButton.classList.add('is-hidden');
+      Notify.warning("We're sorry, but you've reached the end of search results.");
+      onRenderMarkupGallery(image.hits);
+      return;
+    }
+    if (image.hits.length !== 0) {
+      onRenderMarkupGallery(image.hits);
+      console.log(image.hits);
+      console.log(image.totalHits);
+      loadMoreButton.classList.remove('is-hidden');
+    }
+  } catch (error) {
+    onShowError(error);
+  }
 };
 
 const onRenderMarkupGallery = imgData => {
@@ -70,12 +69,6 @@ const onSimpleLightbox = () => {
 const onShowError = () => {
   Notify.failure('Error. Please try again.');
 };
-
-// const onLoadMore = () => {
-//   onSearchImg();
-
-//   if ()
-// }
 
 buttonSearch.addEventListener('submit', event => {
   loadMoreButton.classList.remove('is-hidden');

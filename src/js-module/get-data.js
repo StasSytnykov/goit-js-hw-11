@@ -9,20 +9,13 @@ class ImgApiService {
     this.page = 1;
   }
 
-  fetchImage() {
+  async fetchImage() {
     const url = `${BASE_URL}${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`;
 
-    return fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(response.status);
-        }
-        return response.json();
-      })
-      .then(({ hits, totalHits }) => {
-        this.incrementPage();
-        return { hits, totalHits };
-      });
+    const response = await axios.get(url);
+    const image = response.data;
+    this.incrementPage();
+    return image;
   }
 
   incrementPage() {
