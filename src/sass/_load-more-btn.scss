@@ -8,9 +8,11 @@
   border: 1px solid pink;
   border-radius: 6px;
 
+  cursor: pointer;
+  transition: background-color 250ms ease-in-out;
+
   &:hover,
-  :focus {
-    cursor: pointer;
+  &:focus {
     background-color: rgb(223, 221, 221);
   }
 }

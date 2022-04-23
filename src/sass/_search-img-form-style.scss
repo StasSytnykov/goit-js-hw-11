@@ -5,9 +5,12 @@
   display: flex;
   justify-content: center;
   background-color: pink;
+  z-index: 100;
 
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  top: 0;
 }
 
 .form-btn {
@@ -18,9 +21,10 @@
 
   border: 1px solid pink;
   border-radius: 6px;
+  transition: background-color 250ms ease-in-out;
 
   &:hover,
-  :focus {
+  &:focus {
     cursor: pointer;
     background-color: rgb(223, 221, 221);
   }
