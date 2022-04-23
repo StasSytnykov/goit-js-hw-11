@@ -1,11 +1,10 @@
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  grid-gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  padding-top: 60px;
-  margin-left: auto;
-  margin-right: auto;
+  
+  gap: 15px;
+  padding-top: 80px;
 }
 
 .photo-card {
@@ -24,6 +23,7 @@
 
 .photo-thumb {
   height: 300px;
+  width: 460px;
 }
 
 .info {
